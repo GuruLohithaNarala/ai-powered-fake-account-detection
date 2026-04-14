@@ -1,0 +1,90 @@
+/* AdminDashboard module - extends AdminTables for card colors */
+.page { animation: fadeInUp .35s ease both; }
+
+.page h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  margin-bottom: .4rem;
+}
+
+.subtitle { color: var(--text-muted); font-size: .88rem; margin-bottom: 2rem; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: var(--card-accent, var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+
+.card:hover {
+  border-color: var(--card-accent, var(--accent));
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover::before { transform: scaleX(1); }
+
+.cardTop {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: .6rem;
+}
+
+.cardLabel {
+  font-size: .72rem; font-weight: 700;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: .07em;
+}
+
+.icon { font-size: 1.5rem; }
+
+.value {
+  font-size: 2.6rem; font-weight: 800;
+  letter-spacing: -.04em; line-height: 1;
+  font-family: var(--font-mono);
+  animation: countUp .5s ease both;
+}
+
+.muted { color: var(--text-muted); padding: 3rem 0; text-align: center; font-size: .9rem; }
+
+.links {
+  display: flex; flex-wrap: wrap; gap: .75rem;
+  margin-top: 1rem;
+}
+
+.link {
+  padding: .6rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: .875rem; font-weight: 600;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.link:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(108,99,255,.08);
+  text-decoration: none;
+}

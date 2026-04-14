@@ -1,0 +1,11 @@
+account_age_days
+followers_count
+following_count
+post_count
+posts_per_week
+has_profile_picture
+has_bio
+bio_length
+username_length
+following_follower_ratio
+engagement_rate

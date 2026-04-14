@@ -1,0 +1,306 @@
+/* ── Admin pages (shared tables + cards) ── */
+
+/* ── Page shell ── */
+.page { animation: fadeInUp .35s ease both; }
+
+.page h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  margin-bottom: .4rem;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: .88rem;
+  margin-bottom: 2rem;
+}
+
+/* ── Stat Cards (AdminDashboard) ── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+
+.card:hover { border-color: var(--accent2); transform: translateY(-2px); box-shadow: var(--shadow-card); }
+.card:hover::before { transform: scaleX(1); }
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .6rem;
+}
+
+.cardLabel {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+.icon { font-size: 1.5rem; }
+
+.value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -.04em;
+  line-height: 1;
+  font-family: var(--font-mono);
+  animation: countUp .5s ease both;
+}
+
+.cardSub {
+  font-size: .72rem;
+  color: var(--text-dim);
+  margin-top: .35rem;
+}
+
+/* ── Quick links ── */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: 1rem;
+}
+
+.link {
+  padding: .6rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: .875rem;
+  font-weight: 600;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+
+.link:hover {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(108,99,255,.08);
+  text-decoration: none;
+}
+
+/* ── Toolbar ── */
+.toolbar {
+  display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.searchWrap { position: relative; flex: 1; min-width: 200px; max-width: 320px; }
+
+.searchIcon {
+  position: absolute; left: .75rem; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dim); font-size: .85rem; pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: .52rem .75rem .52rem 2.2rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text);
+  font-size: .875rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.searchInput:focus { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(108,99,255,.12); }
+
+.filterBtns { display: flex; gap: .35rem; }
+
+.filterBtn {
+  padding: .42rem .85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.filterBtn:hover  { border-color: var(--accent2); color: var(--accent2); }
+.filterBtn.active { border-color: var(--accent2); color: var(--accent2); background: rgba(108,99,255,.1); }
+
+/* ── Table ── */
+.tableWrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: auto;
+  box-shadow: var(--shadow-card);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85rem;
+  min-width: 600px;
+}
+
+.table thead tr {
+  background: var(--bg-card2);
+  border-bottom: 1px solid var(--border);
+}
+
+.table th {
+  padding: .85rem 1rem;
+  text-align: left;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: color var(--transition);
+}
+
+.table th:hover { color: var(--text); }
+
+.table tbody tr {
+  border-bottom: 1px solid rgba(30,46,72,.7);
+  transition: background var(--transition);
+}
+
+.table tbody tr:last-child { border-bottom: none; }
+.table tbody tr:hover      { background: rgba(255,255,255,.025); }
+
+.table td { padding: .8rem 1rem; color: var(--text); }
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .65rem;
+  border-radius: 99px;
+  background: rgba(108,99,255,.12);
+  color: var(--accent2);
+  font-size: .72rem;
+  font-weight: 700;
+  border: 1px solid rgba(108,99,255,.25);
+}
+
+.badgeFake {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .65rem;
+  border-radius: 99px;
+  background: rgba(255,67,101,.12);
+  color: var(--danger);
+  font-size: .72rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,67,101,.25);
+}
+
+.badgeGenuine {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .65rem;
+  border-radius: 99px;
+  background: rgba(6,214,160,.12);
+  color: var(--success);
+  font-size: .72rem;
+  font-weight: 700;
+  border: 1px solid rgba(6,214,160,.25);
+}
+
+.badgeWarn {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .65rem;
+  border-radius: 99px;
+  background: rgba(255,190,11,.12);
+  color: var(--warning);
+  font-size: .72rem;
+  font-weight: 700;
+  border: 1px solid rgba(255,190,11,.25);
+}
+
+/* ── Risk bar ── */
+.riskBar { display: flex; align-items: center; gap: .5rem; }
+.riskTrack {
+  flex: 1; height: 5px; border-radius: 99px;
+  background: var(--border); overflow: hidden; min-width: 50px;
+}
+.riskFill { height: 100%; border-radius: 99px; transition: width .5s ease; }
+
+/* ── Path ── */
+.path { font-family: var(--font-mono); font-size: .78rem; color: var(--text-muted); }
+
+/* ── Muted / Empty ── */
+.muted {
+  color: var(--text-muted); font-size: .9rem;
+  padding: 3rem 0; text-align: center;
+}
+
+/* ── Timeline (Audit) ── */
+.timeline { display: flex; flex-direction: column; gap: 0; padding: 1rem; }
+
+.timelineItem {
+  display: flex; gap: 1rem;
+  padding: .8rem 0;
+  border-bottom: 1px solid rgba(30,46,72,.5);
+  position: relative;
+}
+
+.timelineItem:last-child { border-bottom: none; }
+
+.timelineDot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent2); flex-shrink: 0;
+  margin-top: .4rem;
+  box-shadow: 0 0 0 3px rgba(108,99,255,.2);
+}
+
+.timelineBody { flex: 1; min-width: 0; }
+
+.timelineHead {
+  display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: .25rem;
+}
+
+.timelineAction { font-weight: 700; font-size: .87rem; color: var(--text); }
+.timelineMeta   { font-size: .75rem; color: var(--text-dim); font-family: var(--font-mono); }
+.timelineDetail { font-size: .78rem; color: var(--text-muted); }
+
+/* ── Summary chips ── */
+.summaryBar { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.summaryChip {
+  padding: .3rem .75rem;
+  border-radius: 99px;
+  background: var(--bg-card2);
+  border: 1px solid var(--border);
+  font-size: .78rem;
+  color: var(--text-muted);
+}
+.summaryChip strong { color: var(--text); }
+
+/* ── MonoCell ── */
+.mono { font-family: var(--font-mono); font-size: .8rem; color: var(--text-muted); }
