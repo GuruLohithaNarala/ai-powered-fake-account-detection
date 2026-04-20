@@ -47,7 +47,7 @@ router.post('/register', auditLog('USER_REGISTER', 'users'), async (req, res) =>
       return res.status(409).json({ error: 'Email already registered' });
     }
     console.error(err);
-    res.status(500).json({ error: 'Registration failed' });
+    res.status(500).json({ error: 'Registration failed', details: err.message });
   }
 });
 

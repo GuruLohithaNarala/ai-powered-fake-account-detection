@@ -6,6 +6,6 @@ build/
 .DS_Store
 ml-model/venv/
 ml-model/__pycache__/
-ml-model/*.pkl
-ml-model/dataset.csv
+# ml-model/*.pkl
+# ml-model/dataset.csv
 *.pyc
